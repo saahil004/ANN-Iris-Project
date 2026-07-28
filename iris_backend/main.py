@@ -9,7 +9,10 @@ app = FastAPI(title="Iris Species Predictor")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Vite dev server
+    allow_origins=[
+        "http://localhost:5173",  # Vite dev server
+        "https://ann-iris-project.vercel.app",  # deployed frontend
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )

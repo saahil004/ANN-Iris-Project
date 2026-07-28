@@ -17,6 +17,8 @@ const SPECIES_META = {
   'Iris virginica':  { tint: '#7A5BA6', note: 'the largest of the three' },
 };
 
+const API_URL = import.meta.env.DEV ? 'http://localhost:8000' : 'https://ann-iris-project.onrender.com';
+
 // Validate one raw field value against its field's bounds.
 // Returns { valid, empty, message }.
 function validateField(field, raw) {
@@ -198,6 +200,8 @@ export default function App() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [waking, setWaking] = useState(false);
+  const [awake, setAwake] = useState(false);
 
   const bgRef = useRef(null);
   const three = useThreeScene(bgRef);
@@ -219,18 +223,32 @@ export default function App() {
     };
     await new Promise(r => setTimeout(r, 650));
     try {
-      const r = await fetch('http://localhost:8000/predict', {
+      const r = await fetch(`${API_URL}/predict`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
       });
       if (!r.ok) throw new Error('backend');
       const res = await r.json();
       setResult(res);
+      setAwake(true);
       three.current.setTint(SPECIES_META[res.species]?.tint);
       three.current.burst();
     } catch {
-      setError('Could not reach the backend. Is it running on localhost:8000?');
+      setError('Could not reach the backend.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleWake = async () => {
+    setWaking(true); setError(null);
+    try {
+      const r = await fetch(`${API_URL}/health`);
+      if (!r.ok) throw new Error('backend');
+      setAwake(true);
+    } catch {
+      setError('Could not reach the backend.');
+    } finally {
+      setWaking(false);
     }
   };
 
@@ -298,6 +316,25 @@ export default function App() {
               : !allValid ? 'Enter all four measurements'
               : 'Identify species'}
           </motion.button>
+
+          {!awake && (
+            <div className="mt-3 flex items-center gap-2.5">
+              <motion.button
+                onClick={handleWake} disabled={waking}
+                whileHover={{ scale: waking ? 1 : 1.02 }} whileTap={{ scale: waking ? 1 : 0.97 }}
+                className="py-1.5 px-3.5 rounded-full text-xs disabled:cursor-not-allowed"
+                style={{
+                  fontFamily: 'Inter, sans-serif', fontWeight: 500,
+                  background: 'transparent', border: '1px solid #C7C2B0',
+                  color: '#6B6656',
+                }}>
+                {waking ? 'Waking…' : 'Wake up backend'}
+              </motion.button>
+              <p className="text-[11px] leading-snug" style={{ color: '#9A9482', fontFamily: 'Inter, sans-serif' }}>
+                Backend runs on a free-tier service and may take up to a minute to spin up after inactivity.
+              </p>
+            </div>
+          )}
 
           <AnimatePresence mode="wait">
             {error && (
