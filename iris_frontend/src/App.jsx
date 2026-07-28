@@ -17,23 +17,6 @@ const SPECIES_META = {
   'Iris virginica':  { tint: '#7A5BA6', note: 'the largest of the three' },
 };
 
-const CENTROIDS = {
-  'Iris setosa':     [5.01, 3.42, 1.46, 0.24],
-  'Iris versicolor': [5.94, 2.77, 4.26, 1.33],
-  'Iris virginica':  [6.59, 2.97, 5.55, 2.03],
-};
-
-function classifyLocally(v) {
-  const scores = Object.entries(CENTROIDS).map(([sp, c]) => {
-    const d = Math.sqrt(c.reduce((s, ci, i) => s + (ci - v[i]) ** 2, 0));
-    return [sp, Math.exp(-d)];
-  });
-  const total = scores.reduce((s, [, sc]) => s + sc, 0);
-  const probabilities = Object.fromEntries(scores.map(([sp, sc]) => [sp, sc / total]));
-  const [species, confidence] = Object.entries(probabilities).sort((a, b) => b[1] - a[1])[0];
-  return { species, confidence, probabilities };
-}
-
 // Validate one raw field value against its field's bounds.
 // Returns { valid, empty, message }.
 function validateField(field, raw) {
@@ -235,21 +218,20 @@ export default function App() {
       petal_length: values[2], petal_width: values[3],
     };
     await new Promise(r => setTimeout(r, 650));
-    let res;
     try {
       const r = await fetch('http://localhost:8000/predict', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
       });
       if (!r.ok) throw new Error('backend');
-      res = await r.json();
+      const res = await r.json();
+      setResult(res);
+      three.current.setTint(SPECIES_META[res.species]?.tint);
+      three.current.burst();
     } catch {
-      res = classifyLocally(values);
+      setError('Could not reach the backend. Is it running on localhost:8000?');
     } finally {
       setLoading(false);
     }
-    setResult(res);
-    three.current.setTint(SPECIES_META[res.species]?.tint);
-    three.current.burst();
   };
 
   const activeTint = result ? (SPECIES_META[result.species]?.tint ?? '#7C9A6B') : '#4B6043';
