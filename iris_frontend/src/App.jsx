@@ -17,6 +17,25 @@ const SPECIES_META = {
   'Iris virginica':  { tint: '#7A5BA6', note: 'the largest of the three' },
 };
 
+// The backend labels species with hyphens ("Iris-versicolor") while our
+// SPECIES_META keys use spaces. Normalize any incoming label onto our keys
+// so tints, notes, and bar colors resolve regardless of formatting.
+function normalizeSpecies(label) {
+  if (SPECIES_META[label]) return label;
+  const s = String(label).toLowerCase();
+  if (s.includes('setosa')) return 'Iris setosa';
+  if (s.includes('versicolor')) return 'Iris versicolor';
+  if (s.includes('virginica')) return 'Iris virginica';
+  return label;
+}
+
+// Accept a probability that might be 0–1 or 0–100 and return a 0–1 fraction.
+function asFraction(p) {
+  const n = parseFloat(p);
+  if (isNaN(n)) return 0;
+  return n > 1 ? n / 100 : n;
+}
+
 const API_URL = import.meta.env.DEV ? 'http://localhost:8000' : 'https://ann-iris-project.onrender.com';
 
 // Validate one raw field value against its field's bounds.
@@ -230,7 +249,7 @@ export default function App() {
       const res = await r.json();
       setResult(res);
       setAwake(true);
-      three.current.setTint(SPECIES_META[res.species]?.tint);
+      three.current.setTint(SPECIES_META[normalizeSpecies(res.species)]?.tint);
       three.current.burst();
     } catch {
       setError('Could not reach the backend.');
@@ -252,7 +271,8 @@ export default function App() {
     }
   };
 
-  const activeTint = result ? (SPECIES_META[result.species]?.tint ?? '#7C9A6B') : '#4B6043';
+  const resultKey = result ? normalizeSpecies(result.species) : null;
+  const activeTint = result ? (SPECIES_META[resultKey]?.tint ?? '#7C9A6B') : '#4B6043';
   const anyError = validity.some(v => !v.valid && !v.empty);
 
   return (
@@ -282,7 +302,7 @@ export default function App() {
           </div>
           <IrisDrawing values={values} tint={activeTint} bloom={!!result} />
           <p className="text-[11px] leading-relaxed" style={{ color: '#9FAE8A', fontFamily: 'Inter, sans-serif' }}>
-            The drawing grows with your measurements — the scene behind blooms when a species is keyed.
+            neend arahi hai
           </p>
         </div>
 
@@ -349,21 +369,24 @@ export default function App() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.3em]" style={{ color: '#A29B88', fontFamily: 'Inter, sans-serif' }}>Identified as</p>
-                    <p className="text-2xl mt-1" style={{ fontStyle: 'italic', color: SPECIES_META[result.species]?.tint }}>{result.species}</p>
-                    <p className="text-xs mt-0.5" style={{ color: '#8A8474', fontFamily: 'Inter, sans-serif' }}>{SPECIES_META[result.species]?.note}</p>
+                    <p className="text-2xl mt-1" style={{ fontStyle: 'italic', color: SPECIES_META[resultKey]?.tint }}>{resultKey}</p>
+                    <p className="text-xs mt-0.5" style={{ color: '#8A8474', fontFamily: 'Inter, sans-serif' }}>{SPECIES_META[resultKey]?.note}</p>
                   </div>
-                  <ConfidenceRing value={result.confidence} tint={SPECIES_META[result.species]?.tint} />
+                  <ConfidenceRing value={asFraction(result.confidence)} tint={SPECIES_META[resultKey]?.tint} />
                 </div>
                 <div className="mt-5 space-y-2.5">
-                  {Object.entries(result.probabilities).sort((a, b) => b[1] - a[1]).map(([sp, prob], i) => (
+                  {Object.entries(result.probabilities)
+                    .map(([sp, prob]) => [normalizeSpecies(sp), asFraction(prob)])
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([sp, frac], i) => (
                     <div key={sp}>
                       <div className="flex justify-between text-xs mb-1" style={{ fontFamily: 'Inter, sans-serif', color: '#5A5648' }}>
-                        <span style={{ fontStyle: 'italic' }}>{sp}</span><span>{(prob * 100).toFixed(1)}%</span>
+                        <span style={{ fontStyle: 'italic' }}>{sp}</span><span>{(frac * 100).toFixed(1)}%</span>
                       </div>
                       <div className="h-1.5 rounded-full overflow-hidden" style={{ background: '#ECE7DA' }}>
-                        <motion.div initial={{ width: 0 }} animate={{ width: `${prob * 100}%` }}
+                        <motion.div initial={{ width: 0 }} animate={{ width: `${frac * 100}%` }}
                           transition={{ delay: 0.15 + i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                          className="h-full rounded-full" style={{ background: SPECIES_META[sp]?.tint }} />
+                          className="h-full rounded-full" style={{ background: SPECIES_META[sp]?.tint ?? '#7C9A6B' }} />
                       </div>
                     </div>
                   ))}
