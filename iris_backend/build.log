@@ -1,0 +1,231 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 242B done
+#1 DONE 0.0s
+
+#2 [auth] library/python:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 3.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 89B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 847B 0.0s done
+#5 DONE 0.0s
+
+#6 [1/5] FROM docker.io/library/python:3.12-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de
+#6 resolve docker.io/library/python:3.12-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de 0.0s done
+#6 DONE 0.0s
+
+#7 [2/5] WORKDIR /app
+#7 CACHED
+
+#8 [3/5] COPY requirements.txt .
+#8 CACHED
+
+#9 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+#9 2.267 Collecting absl-py==2.5.0 (from -r requirements.txt (line 1))
+#9 3.860   Downloading absl_py-2.5.0-py3-none-any.whl.metadata (3.3 kB)
+#9 4.053 Collecting annotated-doc==0.0.5 (from -r requirements.txt (line 2))
+#9 4.211   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+#9 4.547 Collecting annotated-types==0.8.0 (from -r requirements.txt (line 3))
+#9 4.741   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#9 5.388 Collecting anyio==4.14.2 (from -r requirements.txt (line 4))
+#9 5.528   Downloading anyio-4.14.2-py3-none-any.whl.metadata (4.6 kB)
+#9 5.766 Collecting astunparse==1.6.3 (from -r requirements.txt (line 5))
+#9 5.982   Downloading astunparse-1.6.3-py2.py3-none-any.whl.metadata (4.4 kB)
+#9 6.406 Collecting certifi==2026.7.22 (from -r requirements.txt (line 6))
+#9 6.559   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#9 9.081 Collecting charset-normalizer==3.4.9 (from -r requirements.txt (line 7))
+#9 9.230   Downloading charset_normalizer-3.4.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (41 kB)
+#9 9.594 Collecting click==8.4.2 (from -r requirements.txt (line 8))
+#9 9.778   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+#9 10.15 Collecting colorama==0.4.6 (from -r requirements.txt (line 9))
+#9 10.42   Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+#9 10.94 Collecting fastapi==0.140.13 (from -r requirements.txt (line 10))
+#9 11.09   Downloading fastapi-0.140.13-py3-none-any.whl.metadata (27 kB)
+#9 11.40 Collecting flatbuffers==25.12.19 (from -r requirements.txt (line 11))
+#9 11.54   Downloading flatbuffers-25.12.19-py2.py3-none-any.whl.metadata (1.0 kB)
+#9 11.71 Collecting gast==0.7.0 (from -r requirements.txt (line 12))
+#9 11.84   Downloading gast-0.7.0-py3-none-any.whl.metadata (1.5 kB)
+#9 12.00 Collecting google-pasta==0.2.0 (from -r requirements.txt (line 13))
+#9 12.15   Downloading google_pasta-0.2.0-py3-none-any.whl.metadata (814 bytes)
+#9 15.48 Collecting grpcio==1.83.0 (from -r requirements.txt (line 14))
+#9 15.61   Downloading grpcio-1.83.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.7 kB)
+#9 15.77 Collecting h11==0.16.0 (from -r requirements.txt (line 15))
+#9 15.91   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#9 16.19 Collecting h5py==3.14.0 (from -r requirements.txt (line 16))
+#9 16.33   Downloading h5py-3.14.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.7 kB)
+#9 16.48 Collecting idna==3.18 (from -r requirements.txt (line 17))
+#9 16.61   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+#9 16.80 Collecting joblib==1.5.3 (from -r requirements.txt (line 18))
+#9 16.94   Downloading joblib-1.5.3-py3-none-any.whl.metadata (5.5 kB)
+#9 17.15 Collecting keras==3.15.0 (from -r requirements.txt (line 19))
+#9 17.28   Downloading keras-3.15.0-py3-none-any.whl.metadata (6.3 kB)
+#9 17.44 Collecting libclang==18.1.1 (from -r requirements.txt (line 20))
+#9 17.57   Downloading libclang-18.1.1-py2.py3-none-manylinux2010_x86_64.whl.metadata (5.2 kB)
+#9 17.73 Collecting markdown-it-py==4.2.0 (from -r requirements.txt (line 21))
+#9 17.86   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+#9 18.07 Collecting mdurl==0.1.2 (from -r requirements.txt (line 22))
+#9 18.22   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+#9 18.43 Collecting ml_dtypes==0.5.4 (from -r requirements.txt (line 23))
+#9 18.57   Downloading ml_dtypes-0.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.9 kB)
+#9 18.74 Collecting namex==0.1.0 (from -r requirements.txt (line 24))
+#9 18.89   Downloading namex-0.1.0-py3-none-any.whl.metadata (322 bytes)
+#9 19.14 Collecting narwhals==2.24.0 (from -r requirements.txt (line 25))
+#9 19.28   Downloading narwhals-2.24.0-py3-none-any.whl.metadata (15 kB)
+#9 20.48 Collecting numpy==2.5.1 (from -r requirements.txt (line 26))
+#9 20.64   Downloading numpy-2.5.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+#9 20.84 Collecting opt_einsum==3.4.0 (from -r requirements.txt (line 27))
+#9 20.99   Downloading opt_einsum-3.4.0-py3-none-any.whl.metadata (6.3 kB)
+#9 21.44 Collecting optree==0.19.1 (from -r requirements.txt (line 28))
+#9 21.68   Downloading optree-0.19.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (32 kB)
+#9 21.90 Collecting packaging==26.2 (from -r requirements.txt (line 29))
+#9 22.03   Downloading packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+#9 22.56 Collecting pandas==3.0.5 (from -r requirements.txt (line 30))
+#9 22.70   Downloading pandas-3.0.5-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+#9 23.57 Collecting protobuf==7.35.1 (from -r requirements.txt (line 31))
+#9 23.70   Downloading protobuf-7.35.1-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+#9 24.22 Collecting pydantic==2.13.4 (from -r requirements.txt (line 32))
+#9 24.35   Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+#9 26.58 Collecting pydantic_core==2.46.4 (from -r requirements.txt (line 33))
+#9 26.71   Downloading pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+#9 26.91 Collecting Pygments==2.20.0 (from -r requirements.txt (line 34))
+#9 27.04   Downloading pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+#9 27.19 Collecting python-dateutil==2.9.0.post0 (from -r requirements.txt (line 35))
+#9 27.32   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#9 27.48 Collecting python-multipart==0.0.32 (from -r requirements.txt (line 36))
+#9 27.61   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+#9 27.82 Collecting requests==2.34.2 (from -r requirements.txt (line 37))
+#9 27.98   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#9 28.28 Collecting rich==15.0.0 (from -r requirements.txt (line 38))
+#9 28.42   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+#9 29.33 Collecting scikit-learn==1.9.0 (from -r requirements.txt (line 39))
+#9 29.51   Downloading scikit_learn-1.9.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (11 kB)
+#9 31.02 Collecting scipy==1.18.0 (from -r requirements.txt (line 40))
+#9 31.15   Downloading scipy-1.18.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+#9 31.88 Collecting setuptools==83.0.0 (from -r requirements.txt (line 41))
+#9 32.02   Downloading setuptools-83.0.0-py3-none-any.whl.metadata (6.6 kB)
+#9 32.19 Collecting six==1.17.0 (from -r requirements.txt (line 42))
+#9 32.36   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#9 32.84 Collecting starlette==1.3.1 (from -r requirements.txt (line 43))
+#9 33.04   Downloading starlette-1.3.1-py3-none-any.whl.metadata (6.4 kB)
+#9 34.64 Collecting tensorflow==2.21.0 (from -r requirements.txt (line 44))
+#9 34.79   Downloading tensorflow-2.21.0-cp312-cp312-manylinux_2_27_x86_64.whl.metadata (4.4 kB)
+#9 35.03 Collecting termcolor==3.3.0 (from -r requirements.txt (line 45))
+#9 35.16   Downloading termcolor-3.3.0-py3-none-any.whl.metadata (6.5 kB)
+#9 35.33 Collecting threadpoolctl==3.6.0 (from -r requirements.txt (line 46))
+#9 35.50   Downloading threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+#9 35.75 Collecting typing-inspection==0.4.2 (from -r requirements.txt (line 47))
+#9 36.02   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+#9 36.21 Collecting typing_extensions==4.16.0 (from -r requirements.txt (line 48))
+#9 36.35   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#9 36.51 Collecting tzdata==2026.3 (from -r requirements.txt (line 49))
+#9 36.67   Downloading tzdata-2026.3-py2.py3-none-any.whl.metadata (1.4 kB)
+#9 37.01 Collecting urllib3==2.7.0 (from -r requirements.txt (line 50))
+#9 37.19   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+#9 37.70 Collecting uvicorn==0.51.0 (from -r requirements.txt (line 51))
+#9 37.84   Downloading uvicorn-0.51.0-py3-none-any.whl.metadata (6.6 kB)
+#9 38.63 Collecting wheel==0.47.0 (from -r requirements.txt (line 52))
+#9 38.79   Downloading wheel-0.47.0-py3-none-any.whl.metadata (2.3 kB)
+#9 42.07 Collecting wrapt==2.3.0 (from -r requirements.txt (line 53))
+#9 42.20   Downloading wrapt-2.3.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (7.4 kB)
+#9 42.73 Downloading absl_py-2.5.0-py3-none-any.whl (137 kB)
+#9 44.48 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+#9 44.66 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#9 44.90 Downloading anyio-4.14.2-py3-none-any.whl (125 kB)
+#9 45.73 Downloading astunparse-1.6.3-py2.py3-none-any.whl (12 kB)
+#9 45.91 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#9 46.61 Downloading charset_normalizer-3.4.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (224 kB)
+#9 47.74 Downloading click-8.4.2-py3-none-any.whl (119 kB)
+#9 48.12 Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+#9 48.30 Downloading fastapi-0.140.13-py3-none-any.whl (131 kB)
+#9 48.65 Downloading flatbuffers-25.12.19-py2.py3-none-any.whl (26 kB)
+#9 48.95 Downloading gast-0.7.0-py3-none-any.whl (22 kB)
+#9 49.21 Downloading google_pasta-0.2.0-py3-none-any.whl (57 kB)
+#9 49.89 Downloading grpcio-1.83.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (7.0 MB)
+#9 66.53    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 435.5 kB/s eta 0:00:00
+#9 66.67 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#9 66.98 Downloading h5py-3.14.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.9 MB)
+#9 79.50    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.9/4.9 MB 401.1 kB/s eta 0:00:00
+#9 79.65 Downloading idna-3.18-py3-none-any.whl (65 kB)
+#9 80.07 Downloading joblib-1.5.3-py3-none-any.whl (309 kB)
+#9 81.72 Downloading keras-3.15.0-py3-none-any.whl (1.7 MB)
+#9 88.24    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 413.6 kB/s eta 0:00:00
+#9 88.38 Downloading libclang-18.1.1-py2.py3-none-manylinux2010_x86_64.whl (24.5 MB)
+#9 138.1    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.5/24.5 MB 408.0 kB/s eta 0:00:00
+#9 138.3 Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+#9 139.4 Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+#9 139.7 Downloading ml_dtypes-0.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (5.0 MB)
+#9 151.7    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.0/5.0 MB 465.2 kB/s eta 0:00:00
+#9 151.9 Downloading namex-0.1.0-py3-none-any.whl (5.9 kB)
+#9 152.0 Downloading narwhals-2.24.0-py3-none-any.whl (461 kB)
+#9 154.4 Downloading numpy-2.5.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+#9 190.7    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 471.3 kB/s eta 0:00:00
+#9 191.0 Downloading opt_einsum-3.4.0-py3-none-any.whl (71 kB)
+#9 191.4 Downloading optree-0.19.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (457 kB)
+#9 193.8 Downloading packaging-26.2-py3-none-any.whl (100 kB)
+#9 194.4 Downloading pandas-3.0.5-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (11.0 MB)
+#9 204.1    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.0/11.0 MB 1.2 MB/s eta 0:00:00
+#9 204.3 Downloading protobuf-7.35.1-cp310-abi3-manylinux2014_x86_64.whl (327 kB)
+#9 204.6 Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+#9 204.8 Downloading pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+#9 206.6    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 1.1 MB/s eta 0:00:00
+#9 206.7 Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
+#9 210.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 272.7 kB/s eta 0:00:00
+#9 210.5 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#9 211.5 Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+#9 211.8 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#9 212.3 Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+#9 214.9 Downloading scikit_learn-1.9.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (9.1 MB)
+#9 236.2    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.1/9.1 MB 438.6 kB/s eta 0:00:00
+#9 236.3 Downloading scipy-1.18.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.3 MB)
+#9 265.3    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 35.3/35.3 MB 1.2 MB/s eta 0:00:00
+#9 265.4 Downloading setuptools-83.0.0-py3-none-any.whl (1.0 MB)
+#9 265.9    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 3.1 MB/s eta 0:00:00
+#9 266.0 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#9 266.4 Downloading starlette-1.3.1-py3-none-any.whl (73 kB)
+#9 266.8 Downloading tensorflow-2.21.0-cp312-cp312-manylinux_2_27_x86_64.whl (572.6 MB)
+#9 477.7    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 572.6/572.6 MB 4.8 MB/s eta 0:00:00
+#9 477.8 Downloading termcolor-3.3.0-py3-none-any.whl (7.7 kB)
+#9 478.0 Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+#9 478.1 Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+#9 478.3 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#9 478.4 Downloading tzdata-2026.3-py2.py3-none-any.whl (348 kB)
+#9 478.6 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+#9 478.8 Downloading uvicorn-0.51.0-py3-none-any.whl (73 kB)
+#9 479.0 Downloading wheel-0.47.0-py3-none-any.whl (32 kB)
+#9 479.1 Downloading wrapt-2.3.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (172 kB)
+#9 481.4 Installing collected packages: namex, libclang, flatbuffers, wrapt, urllib3, tzdata, typing_extensions, threadpoolctl, termcolor, six, setuptools, python-multipart, Pygments, protobuf, packaging, opt_einsum, numpy, narwhals, mdurl, joblib, idna, h11, gast, colorama, click, charset-normalizer, certifi, annotated-types, annotated-doc, absl-py, wheel, uvicorn, typing-inspection, scipy, requests, python-dateutil, pydantic_core, optree, ml_dtypes, markdown-it-py, h5py, grpcio, google-pasta, anyio, starlette, scikit-learn, rich, pydantic, pandas, astunparse, keras, fastapi, tensorflow
+#9 520.0 Successfully installed Pygments-2.20.0 absl-py-2.5.0 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.14.2 astunparse-1.6.3 certifi-2026.7.22 charset-normalizer-3.4.9 click-8.4.2 colorama-0.4.6 fastapi-0.140.13 flatbuffers-25.12.19 gast-0.7.0 google-pasta-0.2.0 grpcio-1.83.0 h11-0.16.0 h5py-3.14.0 idna-3.18 joblib-1.5.3 keras-3.15.0 libclang-18.1.1 markdown-it-py-4.2.0 mdurl-0.1.2 ml_dtypes-0.5.4 namex-0.1.0 narwhals-2.24.0 numpy-2.5.1 opt_einsum-3.4.0 optree-0.19.1 packaging-26.2 pandas-3.0.5 protobuf-7.35.1 pydantic-2.13.4 pydantic_core-2.46.4 python-dateutil-2.9.0.post0 python-multipart-0.0.32 requests-2.34.2 rich-15.0.0 scikit-learn-1.9.0 scipy-1.18.0 setuptools-83.0.0 six-1.17.0 starlette-1.3.1 tensorflow-2.21.0 termcolor-3.3.0 threadpoolctl-3.6.0 typing-inspection-0.4.2 typing_extensions-4.16.0 tzdata-2026.3 urllib3-2.7.0 uvicorn-0.51.0 wheel-0.47.0 wrapt-2.3.0
+#9 520.0 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#9 520.7 
+#9 520.7 [notice] A new release of pip is available: 25.0.1 -> 26.1.2
+#9 520.7 [notice] To update, run: pip install --upgrade pip
+#9 DONE 521.6s
+
+#10 [5/5] COPY . .
+#10 DONE 0.4s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 87.0s done
+#11 exporting manifest sha256:a5d0a9f2061de6c51cbfa89d4b12a3e73ef7b60aabf20b5077286e3ba4a7aeb5 0.0s done
+#11 exporting config sha256:ffac78a109a626581e2f4ec7777dde08382d1cfdc9b61fe4375f8cf45c9f6d92 0.0s done
+#11 exporting attestation manifest sha256:7a3d96a1d26b4793569024a21d8ccccb60dc2159ce4e7eb0aae82ef3f467565a 0.0s done
+#11 exporting manifest list sha256:4fc91c5341a79adc6d1c7e73f7498d7c3b8eaa8ea3331e978e5bc5e6b62da1a8 0.0s done
+#11 naming to docker.io/library/iris-backend:latest
+#11 naming to docker.io/library/iris-backend:latest done
+#11 unpacking to docker.io/library/iris-backend:latest
+#11 unpacking to docker.io/library/iris-backend:latest 27.4s done
+#11 DONE 114.5s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 12)
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/quj4k52wkr0v6ta2jsejaf4e9
